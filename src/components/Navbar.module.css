@@ -1,0 +1,9 @@
+.navigation {
+  background-color: rgb(211, 129, 129);
+  grid-area: n;
+}
+.item {
+}
+.link {
+  color: #fff;
+}
