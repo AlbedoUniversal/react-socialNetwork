@@ -1,8 +1,15 @@
 .header {
-  background-color: rgb(37, 114, 37);
+  background-color: rgba(0, 0, 0, 0.8);
   grid-area: h;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
 }
-
 .header img {
-  width: 50px;
+  width: 30px;
+}
+.naming {
+}
+.text {
+  color: #d2bf61;
 }

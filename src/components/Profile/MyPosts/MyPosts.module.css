@@ -1,0 +1,16 @@
+.postsWrapper {
+  border: 1px solid;
+}
+.blocksAddPost {
+  margin-bottom: 1rem;
+}
+
+.blockTextarea_item {
+  width: 99%;
+  /* resize: none; */
+  height: auto;
+}
+
+.posts {
+  border: 1px solid gold;
+}

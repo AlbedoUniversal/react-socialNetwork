@@ -1,0 +1,10 @@
+.dialog {
+}
+
+.dialog .dialogLink {
+  text-decoration: none;
+  color: #eee;
+}
+.dialog .dialogLink.active {
+  color: rgb(102, 124, 39);
+}

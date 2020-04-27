@@ -1,9 +1,63 @@
 .navigation {
-  background-color: rgb(211, 129, 129);
+  background-color: rgba(236, 161, 48, 0.425);
   grid-area: n;
+  padding: 1em;
+  grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
 }
-.item {
+.navigation .item {
+  margin-bottom: 1rem;
+  transition: all 0.3s ease-in-out;
 }
-.link {
+.navigation .item:hover {
+}
+
+.navigation .item .link {
   color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.navigation .item .link:hover {
+  color: rgb(219, 226, 211);
+}
+
+.navigation .item .link.active {
+  color: gold;
+}
+
+.navigation .item.friends {
+  margin-top: auto;
+}
+
+.friendsBox {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 2rem;
+  border-top: 1px solid;
+}
+
+.friendsBox .friendsItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 4rem;
+  border-radius: 0.2rem;
+  background-color: rgba(107, 100, 100, 0.521);
+}
+.friendsBox .friendsItem .friendsPhoto {
+}
+
+.friendsBox .friendsItem .friendsPhoto .ava {
+  width: 100%;
+  height: auto;
+}
+
+.friendsBox .friendsItem .friendsName {
+}
+
+.friendsBox .friendsItem .friendsName .friendsNameText {
+  font-size: 0.7rem;
 }

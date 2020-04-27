@@ -1,10 +1,16 @@
 import React from "react";
 import s from "../Header.module.css";
+import logo from "./Albedo.svg";
 
 const Header = () => {
   return (
     <header className={s.header}>
-      <img src="https://clipartart.com/images/clipart-logo-editor-2.png"></img>
+      <div className={s.logo}>
+        <img src={logo}></img>
+      </div>
+      <div className={s.naming}>
+        <h3 className={s.text}>lbedo's Network</h3>
+      </div>
     </header>
   );
 };
