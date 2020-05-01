@@ -1,10 +1,30 @@
+import React from "react";
+import App from "./App";
+import "./index.css";
+import "./App.css";
+import store from "./redux/state";
+import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import { rerendorEntireTree } from "./render";
-import state from "./redux/state";
+import { BrowserRouter } from "react-router-dom";
+// чтобы роуты работали, необходимо все обернуть в тег BrowserRouter
 
-rerendorEntireTree(state);
+let rerendorEntireTree = state => {
+  // раньше мы импортировали state, а теперь передаем его через параметры, чтобы не было цикличность(полнейшая плохая практика)
+  ReactDOM.render(
+    <BrowserRouter>
+      <App
+        state={store.getState()}
+        addPost={store.addPost.bind(store)}
+        addMessage={store.addMessage.bind(store)}
+        updateNewPostText={store.updateNewPostText.bind(store)}
+        updateNewMessageText={store.updateNewMessageText.bind(store)}
+      />
+    </BrowserRouter>,
+    document.getElementById("root")
+  );
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+rerendorEntireTree(store.getState());
+store.subscribe(rerendorEntireTree);
+
 serviceWorker.unregister();

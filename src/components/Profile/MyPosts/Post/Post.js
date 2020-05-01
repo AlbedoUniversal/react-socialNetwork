@@ -5,7 +5,7 @@ import robotAva from "./robot-ava.svg";
 const Post = props => {
   return (
     <div className={s.item}>
-      <img className={s.itemPhoto} src={robotAva} />
+      <img className={s.itemPhoto} src={robotAva} alt="ava" />
       {props.message}
       <div className={s.blockLike}>
         <span className={s.like}>like{props.likesCount}</span>

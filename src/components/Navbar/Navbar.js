@@ -40,6 +40,7 @@ const Navbar = () => {
               <img
                 src="https://www.starfate.ru/assets/images/sonnik/paren.jpg"
                 className={s.ava}
+                alt="man"
               ></img>
             </div>
             <div className={s.friendsName}>
@@ -51,6 +52,7 @@ const Navbar = () => {
               <img
                 src="https://www.starfate.ru/assets/images/sonnik/paren.jpg"
                 className={s.ava}
+                alt="man"
               ></img>
             </div>
             <div className={s.friendsName}>
@@ -62,6 +64,7 @@ const Navbar = () => {
               <img
                 src="https://www.starfate.ru/assets/images/sonnik/paren.jpg"
                 className={s.ava}
+                alt="man"
               ></img>
             </div>
             <div className={s.friendsName}>

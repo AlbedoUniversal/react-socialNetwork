@@ -10,7 +10,6 @@ import Settings from "./components/Settings/Settings";
 import { Route } from "react-router-dom";
 
 function App(props) {
-  console.log(props);
   return (
     <div className="app-wrapper">
       <Header />
@@ -22,13 +21,20 @@ function App(props) {
             <Dialogs
               // {/*сделал state и для этих тегов, для того, чтобы передавать туда все данные целиком*/}
               state={props.state.dialogsPage}
+              addMessage={props.addMessage}
+              updateNewMessageText={props.updateNewMessageText}
+              newMessageText={props.state.dialogsPage.newMessageText}
             />
           )}
         />
         <Route
           path="/profile"
           render={() => (
-            <Profile state={props.state.profilePage} addPost={props.addPost} />
+            <Profile
+              profilePage={props.state.profilePage}
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText}
+            />
           )}
         />
         <Route path="/news" component={News} />
