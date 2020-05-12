@@ -1,7 +1,5 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
 
 let store = {
   _state: {
@@ -32,7 +30,8 @@ let store = {
         { id: 5, name: "Valera" },
         { id: 6, name: "Vova" }
       ]
-    }
+    },
+    sideBar: {}
   },
   _callSubscriber() {
     console.log("State change"); // уведомить подпищика
@@ -45,74 +44,13 @@ let store = {
     this._callSubscriber = observer; // observer паттерн наблюдатель
   },
 
-  // addPost() {
-  //   let newPost = {
-  //     id: 7,
-  //     message: this._state.profilePage.newPostText,
-  //     likesCount: 0
-  //   };
-  //   this._state.profilePage.posts.push(newPost);
-  //   this._state.profilePage.newPostText = "";
-  //   this._callSubscriber(this._state);
-  // },
-  // updateNewPostText(newText) {
-  //   // прикрпеплояем то значение, которое пришло извне
-  //   this._state.profilePage.newPostText = newText;
-  //   this._callSubscriber(this._state);
-  // },
-  // addMessage() {
-  //   let newMessage = {
-  //     id: 7,
-  //     message: this._state.dialogsPage.newMessageText
-  //   };
-  //   this._state.dialogsPage.messages.push(newMessage);
-  //   this._state.dialogsPage.newMessageText = "";
-  //   this._callSubscriber(this._state);
-  // },
-  // updateNewMessageText(newMessageText) {
-  //   this._state.dialogsPage.newMessageText = newMessageText;
-  //   this._callSubscriber(this._state);
-  // },
   dispatch(action) {
-    if (action.type === ADD_POST) {
-      let newPost = {
-        id: 7,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_POST_TEXT) {
-      this._state.profilePage.newPostText = action.newText; // у каждого экшена (объекта) есть свои свойства, в данном случае если мы оставим просто newText, то не понятно, а что это такое, поэтому мы написали action.newText, чтобы у него был такой метод
-      this._callSubscriber(this._state);
-    } else if (action.type === SEND_MESSAGE) {
-      let newMessage = {
-        id: 7,
-        message: this._state.dialogsPage.newMessageText
-      };
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = "";
-      this._callSubscriber(this._state);
-    } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-      this._state.dialogsPage.newMessageText = action.newMessageText;
-      this._callSubscriber(this._state);
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+
+    this._callSubscriber(this._state);
   }
 };
-
-export const addPostActionCreator = () => ({ type: ADD_POST });
-
-export const updateNewPostTextActionCreator = text => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newText: text
-});
-export const addMessageActionCreator = () => ({ type: SEND_MESSAGE });
-
-export const updateNewMessageTextActionCreator = text => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  newMessageText: text
-});
 
 export default store;
 window.store = store;

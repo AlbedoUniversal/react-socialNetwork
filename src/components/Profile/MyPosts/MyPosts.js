@@ -4,9 +4,10 @@ import Post from "./Post/Post";
 import {
   updateNewPostTextActionCreator,
   addPostActionCreator
-} from "../../../redux/state";
+} from "../../../redux/profile-reducer";
 
 const MyPosts = props => {
+  console.log(props.posts);
   const [count, setCount] = useState(0);
 
   let postsElements = props.posts.map(post => (
