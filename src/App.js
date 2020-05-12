@@ -20,10 +20,8 @@ function App(props) {
           render={() => (
             <Dialogs
               // {/*сделал state и для этих тегов, для того, чтобы передавать туда все данные целиком*/}
-              state={props.state.dialogsPage}
-              addMessage={props.addMessage}
-              updateNewMessageText={props.updateNewMessageText}
-              newMessageText={props.state.dialogsPage.newMessageText}
+              dialogsPage={props.state.dialogsPage}
+              dispatch={props.dispatch}
             />
           )}
         />
@@ -32,8 +30,7 @@ function App(props) {
           render={() => (
             <Profile
               profilePage={props.state.profilePage}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText}
+              dispatch={props.dispatch}
             />
           )}
         />
