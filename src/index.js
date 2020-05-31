@@ -20,7 +20,7 @@ let rerendorEntireTree = state => {
         updateNewPostText={store.updateNewPostText.bind(store)}
         updateNewMessageText={store.updateNewMessageText.bind(store)} -- это так было, ниочемная гора, в которой легко запутаться
       />*/}
-      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+      <App state={state} store={store} />
     </BrowserRouter>,
     document.getElementById("root")
   );

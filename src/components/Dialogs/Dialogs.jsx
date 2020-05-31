@@ -6,21 +6,21 @@ import Message from "./Message/Message";
 const Dialogs = props => {
   // let newMessageElement = React.createRef();
 
-  let onAddMessage = () => {
+  const onAddMessage = () => {
 	  props.addMessage();
   };
 
-  let onMessageChange = e => {
+  const onMessageChange = e => {
 	let text = e.target.value;
 	props.updateNewMessageText(text);
 
   };
 
-  let dialogsElements = props.dialogs.map(dialog => (
+  const dialogsElements = props.dialogs.map(dialog => (
     <DialogItem name={dialog.name} id={dialog.id} />
   ));
 
-  let messagesElements = props.messages.map(message => (
+  const messagesElements = props.messages.map(message => (
     <Message message={message.message} key={message.id} />
   ));
 

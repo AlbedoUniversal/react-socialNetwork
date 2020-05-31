@@ -6,6 +6,7 @@ import {
 import Dialogs from './Dialogs';
 
 const DialogsContainer = props => {
+	console.log(props);
 
 let state = props.store.getState();
 
