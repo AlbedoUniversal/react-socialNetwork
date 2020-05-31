@@ -2,7 +2,7 @@ import React from "react";
 import App from "./App";
 import "./index.css";
 import "./App.css";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
@@ -10,7 +10,6 @@ import { BrowserRouter } from "react-router-dom";
 
 let rerendorEntireTree = state => {
   // раньше мы импортировали state, а теперь передаем его через параметры, чтобы не было цикличность(полнейшая плохая практика)
-  console.log(state);
   ReactDOM.render(
     <BrowserRouter>
       {/* раньше у нас в APP передавались атрибуты(функции) addPost, addMessage и так далее, а теперь мы просто передаем наш state и все остальное только одним методом... методом диспатч. В итоге у нас сократился код - и мы передали только один метод епта - крутяк */}
@@ -21,7 +20,7 @@ let rerendorEntireTree = state => {
         updateNewPostText={store.updateNewPostText.bind(store)}
         updateNewMessageText={store.updateNewMessageText.bind(store)} -- это так было, ниочемная гора, в которой легко запутаться
       />*/}
-      <App state={state} dispatch={store.dispatch.bind(store)} />
+      <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
     </BrowserRouter>,
     document.getElementById("root")
   );
@@ -29,6 +28,9 @@ let rerendorEntireTree = state => {
 
 rerendorEntireTree(store.getState());
 
-store.subscribe(rerendorEntireTree);
+store.subscribe(() => {
+  let state = store.getState();
+  rerendorEntireTree(state);
+});
 
 serviceWorker.unregister();

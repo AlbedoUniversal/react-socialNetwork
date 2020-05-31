@@ -1,13 +1,8 @@
 import React, { useState } from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {
-  updateNewPostTextActionCreator,
-  addPostActionCreator
-} from "../../../redux/profile-reducer";
 
 const MyPosts = props => {
-  console.log(props.posts);
   const [count, setCount] = useState(0);
 
   let postsElements = props.posts.map(post => (
@@ -19,13 +14,13 @@ const MyPosts = props => {
   // спец переменная которая будет содержать ссылку на элемеент(current ссылается на нативный html элемент)
   let newPostElement = React.createRef();
 
-  let addPost = () => {
-    props.dispatch(addPostActionCreator());
+  let onAddPost = () => {
+    props.addPost();
   };
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.dispatch(updateNewPostTextActionCreator(text)); // ф из мира бизнеса,
+    props.updateNewPostText(text);
   };
 
   return (
@@ -41,7 +36,7 @@ const MyPosts = props => {
           />
         </div>
         <div>
-          <button onClick={addPost} className={s.blockAddBtn}>
+          <button onClick={onAddPost} className={s.blockAddBtn}>
             Add post
           </button>
         </div>
