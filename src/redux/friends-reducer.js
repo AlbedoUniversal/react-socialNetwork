@@ -9,6 +9,7 @@ let initialState = {
   ],
   newPostText: ""
 };
+console.log('1');
 
 const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -37,7 +38,7 @@ const friendsReducer = (state = initialState, action) => {
   }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST });
+export const addPostActionCreator = () => ({ type: ADD_POST }); 
 
 export const updateNewPostTextActionCreator = text => ({
   type: UPDATE_NEW_POST_TEXT,
