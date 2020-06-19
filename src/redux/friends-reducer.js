@@ -1,48 +1,53 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const FOLLOW = "FOLLOW";
+const UNFOLLOW = "UNFOLLOW";
+const SET_USERS = "SET_USERS"
 
 let initialState = {
-  posts: [
-    { id: 1, message: "Hi, how are you", likesCount: 23 },
-    { id: 2, message: "What are you doing", likesCount: 2 },
-    { id: 3, message: "What are you doing", likesCount: 2 }
-  ],
-  newPostText: ""
+	friends: [
+		{id: 1, fullName: 'Shlipa', status: 'I am a super', location: {city: 'Moscow', country: 'Russia'}, followed: false},
+		{id: 2, fullName: 'Vova', status: 'I am a boss', location: {city: 'Rostov', country: 'Russia'}, followed: true},
+		{id: 3, fullName: 'Misha', status: 'I am a ninja', location: {city: 'Azov', country: 'Russia'}, followed: false},
+		{id: 4, fullName: 'Roma', status: 'I am a naruto', location: {city: 'Saratov', country: 'Russia'}, followed: true}
+	]
+
 };
-console.log('1');
 
 const friendsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST: {
-		let newPost = {
-		  id: 7,
-		  message: state.newPostText,
-		  likesCount: 0
-		};
+	  case FOLLOW: {
 		return {
 			...state,
-			newPostText: "",
-			posts: [...state.posts, newPost] //вместо пуша, просто через запятую пишем, то , что в конец массива нужно добавить
-
+			friends: state.friends.map( friend => {
+				if(friend.id === action.friendId) {
+					return {...friend, followed: true}
+				}
+				return friend;
+			})
 		};
-	}
-
-	case UPDATE_NEW_POST_TEXT: {
+	  }
+	  case UNFOLLOW: {
 		return {
 			...state,
-			newPostText: action.newText // у каждого экшена (объекта) есть свои свойства, в данном случае если мы оставим просто newText, то не понятно, а что это такое, поэтому мы написали action.newText, чтобы у него был такой метод
+			friends: state.friends.map( friend => {
+				if(friend.id === action.friendId) {
+					return {...friend, followed: false}
+				}
+				return friend;
+			})
 		};
-	}
+	  }
+	  case SET_USERS: {
+		  return {...state, friends: [...action.friends, ...action.friends]}
+	  }
     default:
       return state;
   }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST }); 
+export const followAC = (friendId) => ({ type: FOLLOW, friendId }); // вместо action creatore - AC
 
-export const updateNewPostTextActionCreator = text => ({
-  type: UPDATE_NEW_POST_TEXT,
-  newText: text
-});
+export const unFollowAC = (friendId) => ({type: UNFOLLOW, friendId});
+
+export const setFriendsAC = (friends) => ({type: SET_USERS, friends});
 
 export default friendsReducer;
